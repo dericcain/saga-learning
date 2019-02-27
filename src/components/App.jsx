@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getUsersRequest } from '../actions/users';
+import { createUserRequest, getUsersRequest } from '../actions/users';
 import UsersList from './UsersList';
 import NewUserForm from './NewUserForm';
 
@@ -10,12 +10,9 @@ class App extends Component {
     this.props.getUsersRequest();
   }
 
-  handleSubmit = (firstName, lastName) => new Promise((resolve) => {
-    console.log(firstName, lastName);
-    setTimeout(() => {
-      resolve();
-    }, 3000);
-  });
+  handleSubmit = (firstName, lastName) => {
+    this.props.createUserRequest(firstName, lastName);
+  }
 
   render() {
     const { users } = this.props;
@@ -33,5 +30,6 @@ export default connect(
   ({ users }) => ({ users }),
   {
     getUsersRequest,
+    createUserRequest,
   }
 )(App);
