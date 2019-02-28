@@ -13,3 +13,5 @@ export const createUser = (firstName, lastName) =>
     firstName,
     lastName,
   });
+
+export const deleteUser = userId => axios.delete(`/users/${userId}`);
